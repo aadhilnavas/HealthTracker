@@ -1,0 +1,73 @@
+<div class="container mt-4">
+    <h2 class="text-center"><span class="heart">♥</span> Health Challenge Tracker </h2>
+  
+    <div class="row">
+        <!-- Form Section -->
+        <div class="col-md-8">
+            <form class="card p-4 mt-3 shadow-lg" (ngSubmit)="submitWorkout($event)">
+                <div class="mb-3">
+                    <label class="form-label">User Name:</label>
+                    <input type="text" class="form-control" [(ngModel)]="userName" name="userName" placeholder="Enter your name" required>
+                </div>
+  
+                <div class="mb-3">
+                    <label class="form-label">Workout Type:</label>
+                    <select class="form-control" [(ngModel)]="workoutType" name="workoutType" required>
+                        <option value="" disabled selected>Select Workout</option>
+                        <option *ngFor="let type of workoutTypes" [value]="type">{{ type }}</option>
+                    </select>
+                </div>
+  
+                <div class="mb-3">
+                    <label class="form-label">Workout Minutes:</label>
+                    <input type="number" class="form-control" [(ngModel)]="workoutMinutes" name="workoutMinutes" placeholder="Enter minutes" required>
+                </div>
+  
+                <div class="mb-3">
+                    <label class="form-label">Status:</label>
+                    <select class="form-control" [(ngModel)]="status">
+                        <option value="Completed">Completed</option>
+                        <option value="Not Completed">Not Completed</option>
+                        <option value="Partially Completed">Partially Completed</option>
+                    </select>
+                </div>
+  
+                <button class="btn btn-primary w-100">Submit</button>
+            </form>
+  
+            <!-- Success Message -->
+            <div *ngIf="showMessage" class="alert alert-success mt-3 text-center">
+                ✅ Data Submitted Successfully!
+            </div>
+        </div>
+  
+        <!-- Timer Section -->
+        <aside class="col-md-4 text-center">
+            <div class="p-3 bg-white rounded shadow-sm">
+                <h4>⏳ Warmup Timer</h4>
+  
+                <label for="warmupMinutes">Warm-up (minutes):</label>
+                <input id="warmupMinutes" type="number" class="form-control mb-2 text-center"
+                       [(ngModel)]="warmupMinutes" min="0" placeholder="Warm-up minutes">
+  
+                <!-- Larger Countdown Timer -->
+                <div class="timer-display">
+                    <h2 class="text-primary fw-bold">{{ remainingTime }} sec</h2>
+                </div>
+  
+                <div class="button-group">
+                    <button class="btn btn-success me-2" (click)="startTimer()">▶️ Start</button>
+                    <button class="btn btn-warning me-2" (click)="pauseTimer()">⏸️ Pause</button>
+                    <button class="btn btn-danger" (click)="resetTimer()">🔄 Reset</button>
+                </div>
+            </div>
+  
+            <!-- Fitness Tip Section -->
+            <div class="mt-3 p-3 bg-light rounded shadow-sm">
+                <h5>🔥 Fitness Tip:</h5>
+                <p>Stay hydrated and warm up before workouts!</p>
+            </div>
+        </aside>
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+/* Ensure toggle button aligns properly */
+.navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  
+  /* Smooth transition */
+  .collapse {
+    transition: max-height 0.3s ease-in-out;
+  }
+  .heart-stethoscope {
+    font-size: 20px;  /* Adjust size */
+    color: #e74c3c;   /* Heart color */
+  }
+  
+  .heart-stethoscope i {
+    margin: 0 1px;   /* Space between the icons */
+  }
+  
+  .fa-heart {
+    color: red;  /* Heart color */
+  }
+  
+  .fa-stethoscope {
+    color: #b4bbc2; /* Stethoscope color */
+  }
+  

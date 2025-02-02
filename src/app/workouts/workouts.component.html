@@ -1,0 +1,95 @@
+<div class="container mt-4">
+    <h2 class="text-center">📋 Workout List</h2>
+  
+    <!-- Search -->
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+          <input type="text" class="form-control" [(ngModel)]="searchName" placeholder="🔍 Search by Name">
+        </div>
+        <div class="col-md-6">
+          <select class="form-control" [(ngModel)]="selectedWorkout">
+            <option value="">🏋️ Search by Workout Type</option>
+            <option *ngFor="let workout of workoutOptions" [value]="workout">
+              {{ workout }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+  
+    <!-- Workout Table -->
+    <table class="table table-bordered shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Workouts</th>
+          <th>Number of Workouts</th>
+          <th>Total Workout Minutes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredWorkouts; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.workoutTypes }}</td>
+          <td>{{ user.totalWorkouts }}</td>
+          <td>{{ user.totalMinutes }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-primary me-2" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+        ⬅️ Prev
+      </button>
+      <span class="align-self-center">Page {{ currentPage }} of {{ totalPages }}</span>
+      <button class="btn btn-primary ms-2" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        Next ➡️
+      </button>
+    </div>
+  
+    <!-- Add New Workout -->
+    <div class="mt-4 card p-3 shadow-sm">
+      <h4>Add New Workout</h4>
+      <form (submit)="addWorkout(); $event.preventDefault()">
+        <div class="row mb-2">
+          <div class="col-md-4">
+            <input type="text" class="form-control" [(ngModel)]="newUserName" placeholder="Enter Name" name="newUserName" required>
+          </div>
+          <div class="col-md-4">
+            <select class="form-control" [(ngModel)]="newWorkoutType1" name="newWorkoutType1" required>
+              <option value="" disabled selected>Select First Workout</option>
+              <option *ngFor="let type of ['Running', 'Cycling', 'Yoga', 'Swimming', 'Walking']" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="number" class="form-control" [(ngModel)]="newWorkoutMinutes1" placeholder="Minutes" name="newWorkoutMinutes1" required>
+          </div>
+        </div>
+  
+        <!-- Second Workout (Optional) -->
+        <div class="row mb-2">
+          <div class="col-md-4 offset-md-4">
+            <select class="form-control" [(ngModel)]="newWorkoutType2" name="newWorkoutType2">
+              <option value="" disabled selected>Select Second Workout (Optional)</option>
+              <option *ngFor="let type of ['Running', 'Cycling', 'Yoga', 'Swimming', 'Walking']" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="number" class="form-control" [(ngModel)]="newWorkoutMinutes2" placeholder="Minutes (Optional)" name="newWorkoutMinutes2">
+          </div>
+        </div>
+  
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">➕ Add</button>
+        </div>
+      </form>
+    </div>
+  </div>

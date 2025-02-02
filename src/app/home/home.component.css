@@ -1,0 +1,57 @@
+aside {
+    margin-top: 30px; /* Adjust as needed */
+  }
+  button {
+    min-width: 80px; /* Ensures consistent button width */
+    padding: 10px 15px; /* Consistent padding */
+    font-size: 16px; /* Match other buttons */
+  }
+  .button-group {
+    display: flex;
+    justify-content: center; /* Centers the buttons */
+    gap: 20px;
+    margin-top: 10px; /* Add space */
+  
+    /* Shift buttons slightly to the right */
+    transform: translateX(10px); /* Adjust value if needed */
+  }
+
+
+.timer-display::before {
+    content: "⏳ Time Left: ";
+    font-weight: bold;
+    color: #970505;
+  }
+  
+
+  .heart {
+    display: inline-block;
+    font-size: 50px;  /* Adjust size */
+    color: red;
+    animation: slide-heart 10s ease-in-out infinite;
+  }
+  
+  @keyframes slide-heart {
+    0% {
+      transform: translateX(0);
+      color: red;
+    }
+    25% {
+      transform: translateX(20px);
+      color: pink;
+    }
+    50% {
+      transform: translateX(0);
+      color: red;
+    }
+    75% {
+      transform: translateX(-20px);
+      color: rgb(230, 24, 58);
+    }
+  
+  
+
+
+  }
+
+  
